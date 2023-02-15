@@ -1,0 +1,43 @@
+Write a function which takes 2 strings as parameters.
+s1: The string to be trimmed
+set: the reference set of characters to trim.
+
+Remove s1's head and end characters which match in s2.=> So beside head and tail, the characters in the middle should stay.
+
+Return value: (1)The trimmed string or (2)NULL if allocation fails
+=> so NULL pointer or malloc(0) returns NULL; s1="" returns s1
+
+prototype:
+char *ft_strtrim(char const *s1, char const *set);
+
+/*s2 could be or have multiple same characters? Could be => break out the loop when a match is found*/
+
+sample:
+s1[] = " Hello,$?World-+?\0";
+set[] = " $?-+";
+
+expect outcome:
+"Hello,World\0";
+
+approach:
+
+1. check parameters are valid
+	if the *s1 is NULL pointer, return (NULL);
+	if *set is NULL pointer, return NULL;
+2. Check for characters from *set => ft_is_set()
+	-> case 1: if set[] = "", return (0);
+	-> case 2: 2 while loops, 1 for read the string, 1 for checking if s1[i] == set[];
+3. Find the starting location for the return string
+	use ft_is_sep() to get the first character which is not found in *set
+	return (location of the character);
+4. Find the length of the return string
+	find the last character which is not found in *set
+	don't count '\0' --> ft_strlen(s1) - 1 => int end
+	find the starting location => int start
+	-> case 1: end - start >= 0, return (end - start + 1) /*length of string + '\0'*/
+	-> case 2: end - strat < 0, return (0) /*when *s1 has all characters that match with *set*/
+5. use malloc to allocate the correct size of *ptr
+	-> if malloc fail to allocate (ptr == NULL), return (NULL);
+	-> copy s1[start] when (4.)len != 0
+	-> ptr[end] = '\0'
+6 return (ptr)
