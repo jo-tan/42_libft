@@ -1,0 +1,44 @@
+Description:
+Write a function which takes a string and a charater as parameters.
+The function will use the charater as delimiter to split the string into new strings.
+The array of strings must return with a NULL pointer.
+
+Return value: The array of strings
+
+The prototype is as below
+char **ft_split(char const *s, char sep);
+
+allow functions: malloc,free => #include <stdlib.h>
+
+Sample:
+s[] = " Hello      ,  world ";
+sep = ' ';
+
+expect outcome:
+Hello
+,
+world
+(NULL)
+
+In the sample, the size of **ptr will look like {{5 + 1},{1 + 1},{5 + 1},{NULL}}
+
+PSEUDO-CODE
+
+1. read and count the number of strings to allocate (size of **ptr)
+2. malloc the right size of **ptr (count_str + 1)
+ 	-> if malloc fail to allocate the space (*ptr is NULL), return NULL
+3. read the string until it meets '\0' /*what if string[] = ""? <-- use if to handle this*/
+	3.1 -> find a word
+		case 1: s[i] != c
+		case 2: s[i] == c, i++
+	3.2 -> count the lenght of the word
+	3.3 -> use malloc to allocate enough space for the word
+			-> if fail to assign space, 
+			   free the string and previous strings
+			   return NULL
+			   /*Do I also free the **ptr? Yes*/
+	3.4 -> write the word to **ptr[index];
+			-> if s[i] && s[i] != c, copy the charactor from string
+	3.5 -> go to next index of **ptr;
+	3.6 -> go back to 4.1
+4. return (**ptr)
