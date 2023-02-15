@@ -19,7 +19,7 @@ set[] = " $?-+";
 expect outcome:
 "Hello,World\0";
 
-approach:
+PSEUDO-CODE
 
 1. check parameters are valid
 	if the *s1 is NULL pointer, return (NULL);
