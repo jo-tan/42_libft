@@ -23,3 +23,17 @@ t_list	*ft_lstnew(void *content)
 	new -> next = NULL;
 	return (new);
 }
+
+/*Practing to write pointer in another syntax
+ t_list	*ft_lstnew(void *content)
+{
+	t_list	*new;
+    
+    new = malloc(sizeof(t_list));
+    if (!new)
+    	return(NULL); //malloc protection
+    (*new).content = content;
+    (*new).next = NULL;
+    return (new);
+}
+ */
