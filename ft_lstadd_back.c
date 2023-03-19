@@ -26,3 +26,21 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	ptr = ft_lstlast(*lst);
 	ptr -> next = new;
 }
+
+/* update: 19 Mar 2023. rewrite the syntax and comment*/
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list *ptr;
+    /*Check parameters: 
+    if new node is empty, exit
+    if lst is empty, point to new and exit*/
+    if(!new)
+    	return ;
+    if (*lst == NULL) //if value of pointer lst is NULL
+	{
+    	*lst = new);
+        return ;
+    }
+    ptr = ft_lstlast(*lst); //use ft_lstlast() to go to the last (*lst).next
+    *(*lst).next = new; //value of pointer (struct type) lst's field, next, point to new
+}
